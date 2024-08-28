@@ -1,0 +1,27 @@
+What is Cloud VPC?
+Create VPC,Subnet Route table in public and Private and create NAT gateway
+
+NAT Gateway and NAT instance:
+
+NAT Gateway.
+Highly available.NAT gateways in each Availability Zone are implemented with redundancy.
+Create a NAT gateway in each Availability Zone to ensure zone-independent architecture. 
+Scale up to 45 Gbps.
+Managed by AWS. You do not need to perform any maintenance.
+Charged depending on the number of NAT gateways you use, duration of usage, and amount of data that you send through the NAT gateways. 
+Automatically selected from the subnet's IP address range when you create the gateway
+
+NAT instance.
+Use a script to manage failover between instances.
+Depends on the bandwidth of the instance type.
+Managed by you, for example, by installing software updates or operating system patches on the instance. 
+Assign a specific private IP address from the subnet's IP address range when you launch the instance. 
+Charged depending on the number of NAT instances that you use, duration of usage, and instance type and size. 
+---------------------------------------------------------------------------------
+
+VPC Peering 
+A VPC peering connection is a networking connection between two VPCs
+that enables you to route traffic between them using private IP addresses.
+
+LAB in VPC peering
+
