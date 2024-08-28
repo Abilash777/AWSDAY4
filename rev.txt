@@ -1,0 +1,509 @@
+-----------
+Start(1)
+Basics of Cloud Computing
+------------
+27/09/21 (2)
+Cloud service providers
+AWS architecture
+----------------------------
+28/09/21 (3)
+Create new account in AWS 
+AWS free tier usage
+what are the services in aws 
+How to create a server in AWS 
+Start with linux basic commands ppt
+-------------------------------------
+29/09/21 (4)
+Start with linux basic commands ppt
+Tip:talk about os in AWS (No soundcard ,No GUI)
+----------------------------------------------
+30/09/21 (5)
+Continue class for Linux
+-------------------------------------------------
+1/10/21 (6)
+MFA login
+AWS Calculator
+EC2 Connection methods putty/mobaxterm
+Instance pricing and Instance types in aws console
+--------------------------------------------------------
+4/10/21 (7)
+EC2
+
+Spot Requests---AWS spot instances are an excellent way to significantly reduce your EC2 on demand instance cost by up to 90% 
+
+Images:AMI
+yum install git -------------------explain term Y
+git version
+IMAGES--AMIS--LAUNCH
+launch instance--MYAMIS--- your customized AMIS
+AWS MARKET PLACE ---Online store for customized AMIS
+COMMUNITY AMIS --images published by other AMI users No support/not recommanded 
+de register to remove AMIS
+------------------------------------------------------------------
+5/10/21 (8)
+
+What is a webserver ?
+
+#!/bin/bash
+sudo su
+yum update -y
+yum install httpd -y #apache
+systemctl start httpd
+systemctl enable httpd #server restart
+echo "Hello AWS boys i am from $(hostname -f)" > /var/www/html/index.html
+
+go to server and check cat /var/www/html/index.html
+------------------------------------------------------------------------------
+6/10/21 (9)
+
+Elastic IP (explain in paint)
+An Elastic IP address is a static IPv4 address designed for dynamic cloud computing.
+By using an Elastic IP address, you can mask the failure of an instance or software 
+by rapidly remapping the address to another instance in your account.
+
+AWS::EC2::PlacementGroup
+A cluster placement group is a logical grouping of instances within a single Availability Zone 
+that benefit from low network latency, high network throughput
+
+Network Interfaces/NIC card
+
+Amazon EBS
+--------------------------------------------------------------------------------
+7/10/21(10)
+
+lAB1
+Changing default port for SSH 22
+
+lAB2 Adding Volumes
+Adding Volume and Create mount point
+Volume -- create Volume wait it will comes to available
+Select Volume -- attach --- select instance -- attach it will now show in use
+login to server
+df -h #to verify the available size
+lsblk #to list the blockfiles
+file -s /dev/___ :data #means need to setup
+mkfs -t xfs /dev/____  
+file -s /dev/___  #to check now some value will show
+Create a path for mount point
+mkdir bobz #to create directory
+pwd #to check the path
+mount /dev/___ /pwd path 
+now check using #df -h
+umount /dev/____
+go to volume and detach and delete
+
+-----------------------------------------------------------------------------------
+8/10/21(11)
+
+Snapshot
+
+Lifecycle manager
+
+Bonus TIP(study about NGINX)
+Is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. 
+Written in C language.
+Nginx has grown in popularity since its release due to its light-weight resource utilization and its ability to scale easily on minimal hardware.
+used by high traffic websites such as Dropbox, Netflix,Zynga,NASA.
+
+What is Load balancer?
+AWS ELB
+-------------------------------------------------------------------------------------------
+11/10/21 (12)
+LAB:ELB
+What is AutoScsaling?
+
+-----------------------------------------------------------
+12/10/21 (13)
+
+LAB:AutoScaling
+
+yes > /dev/null &
+
+killall yes
+-----------------------------------------------
+13/10/21 (14)
+AWS Billing Dashboard 
+AWS Snow Family
+------------------------------------------------
+14/10/21 (15)
+S3(Amazon Simple Storage Service is a service offered by Amazon Web Services that provides object storage through a web service interface. 
+===============================
+
+1 S3 is KEY/value store for storing objects
+2.Amazon S3 allows people to store objects 
+  (files) " buckets" ( Directories) 
+3. Buckets must have a globally unique name
+4. Bukets are defined at the regional leval
+5. Naming convention
+6. No uppercase
+7. NO underscore
+8. 3-63 characters long
+9. Not an IP
+10. Must start with lowercase letter or number
+11. Objects (files) have a key. The key is the full path.
+12. <my_bucket>/my_file.txt
+13. <my_bucket>/my_folder1/another_folder/myfile.txt 
+14. Just keys with very long names that contains slashes "/"
+15.  Object value is content of the body
+16. Max size is 5 TB.
+17. If uploading more than 5tb must use "Multi-part upload"
+18. metadata (list of text key) value pairs
+19. Tags
+20. Version ID ( If versioning is enabled) 
+21. how many bucket can create one aws account?
+
+	100 buckets
+	===========
+	By default, you can create up to 100 buckets in each of your AWS accounts. 
+	If you need additional buckets, 
+	you can increase your account bucket limit to a maximum of 1,000 buckets
+	by submitting a service limit increase.
+	
+
+	
+AWS S3 - Versioning
+====================
+
+1. You can version your files in AWS S3.
+2. It is enabled at the bucket level.
+3. Same key overwritte will increment the Version
+    1,2,3 
+4. It is best practise to version your bucket.
+5. Protect aganist unintended deletes
+6. (Ability to restore a version)
+7. Easy roll back to previous version
+8. Any files that is is not versioned prior to enabling versioning 
+     Version "null"
+
+
+ 
+ https://aws.amazon.com/s3/storage-classes/?nc=sn&loc=3
+
+ Amazon S3 Storage Classes:
+
+ ============================
+ Amazon S3 offers a range of storage classes designed for different use cases.
+ These include S3 Standard for general-purpose storage of frequently accessed data;
+ S3 Intelligent-Tiering for data with unknown or changing access patterns; S3 Standard-Infrequent Access
+ (S3 Standard-IA) and S3 One Zone-Infrequent Access (S3 One Zone-IA) 
+ for long-lived, but less frequently accessed data; and Amazon S3 Glacier (S3 Glacier) 
+ and Amazon S3 Glacier Deep Archive (S3 Glacier Deep Archive) for long-term archive
+ and digital preservation. If you have data residency requirements that can’t be
+ met by an existing AWS Region, you can use the S3 Outposts storage class to 
+ store your S3 data on-premises. Amazon S3 also offers capabilities to manage
+ your data throughout its lifecycle. Once an S3 Lifecycle policy is set, 
+ your data will automatically transfer to a different storage class without
+ any changes to your application. 
+
+
+General purpose
+Amazon S3 Standard (S3 Standard)
+================================
+
+S3 Standard offers high durability, availability, and performance object storage for frequently 
+accessed data. Because it delivers low latency and high throughput, 
+S3 Standard is appropriate for a wide variety of use cases, 
+including cloud applications, dynamic websites, content distribution,
+ mobile and gaming applications, and big data analytics. 
+ S3 Storage Classes can be configured at the object level 
+ and a single bucket can contain objects stored across S3 Standard, 
+ S3 Intelligent-Tiering, S3 Standard-IA, and S3 One Zone-IA. 
+ You can also use S3 Lifecycle policies to automatically transition objects between storage 
+ classes without any application changes. 
+ 
+ 
+ Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering):
+ ========================================================
+ 
+ Amazon S3 Intelligent-Tiering (S3 Intelligent-Tiering) is the only cloud storage
+ class that delivers automatic cost savings by moving objects between four access
+ tiers when access patterns change. The S3 Intelligent-Tiering storage class is designed
+ to optimize costs by automatically moving data to the most cost-effective access tier, 
+ without operational overhead. 
+ 
+ 
+ Key Features:
+ =============
+
+Automatically optimizes storage costs for data with changing access patterns
+Stores objects in four access tiers, optimized for frequent, infrequent, archive, and deep archive access
+Frequent and Infrequent Access tiers have same low latency and high throughput performance of S3 Standard
+Activate optional automatic archive capabilities for objects that become rarely accessed
+Archive access and deep Archive access tiers have same performance as Glacier and Glacier Deep Archive
+Designed for durability of 99.999999999% of objects across multiple Availability Zones
+Designed for 99.9% availability over a given year
+
+
+Infrequent access
+Amazon S3 Standard-Infrequent Access (S3 Standard-IA)
+====================================================
+
+S3 Standard-IA is for data that is accessed less frequently,
+ but requires rapid access when needed. 
+ S3 Standard-IA offers the high durability, 
+ high throughput, and low latency of S3 Standard,
+ with a low per GB storage price and per GB retrieval fee. 
+ 
+ Key Features:
+ ================
+
+Same low latency and high throughput performance of S3 Standard
+Designed for durability of 99.999999999% of objects across multiple Availability Zones
+Resilient against events that impact an entire Availability Zone
+Data is resilient in the event of one entire Availability Zone destruction
+Designed for 99.9% availability over a given year
+
+Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)
+=====================================================
+
+S3 One Zone-IA is for data that is accessed less frequently, 
+but requires rapid access when needed. Unlike other S3 Storage 
+Classes which store data in a minimum of three Availability Zones (AZs),
+ S3 One Zone-IA stores data in a single AZ and costs 20% less than S3 Standard-IA. 
+ S3 One Zone-IA is ideal for customers who want a lower-cost option for infrequently 
+ accessed data but do not require the availability and resilience of S3 Standard or 
+ S3 Standard-IA. It’s a good choice for storing secondary backup copies of on-premises
+ data or easily re-creatable data. You can also use it as cost-effective storage 
+ for data that is replicated from another AWS Region using S3 Cross-Region Replication.
+ 
+ Key Features:
+ ================
+Same low latency and high throughput performance of S3 Standard
+Designed for durability of 99.999999999% of objects in a single Availability Zone†
+Designed for 99.5% availability over a given year
+Backed with the Amazon S3 Service Level Agreement for availability
+Supports SSL for data in transit and encryption of data at rest
+S3 Lifecycle management for automatic migration of objects to other S3 Storage Classes
+
+Archive
+Amazon S3 Glacier (S3 Glacier)
+===============================
+
+S3 Glacier is a secure, durable, and low-cost storage class for data archiving. 
+You can reliably store any amount of data at costs that are competitive with or cheaper 
+than on-premises solutions. To keep costs low yet suitable for varying needs, 
+S3 Glacier provides three retrieval options that range from a few minutes to hours.
+ You can upload objects directly to S3 Glacier, or use S3 Lifecycle policies
+ to transfer data between any of the S3 Storage Classes for active data (S3 Standard,
+ S3 Intelligent-Tiering, S3 Standard-IA, and S3 One Zone-IA) and S3 Glacier. 
+ 
+ Key Features:
+ ==================
+Designed for durability of 99.999999999% of objects across multiple Availability Zones
+Data is resilient in the event of one entire Availability Zone destruction
+Supports SSL for data in transit and encryption of data at rest
+Low-cost design is ideal for long-term archive
+Configurable retrieval times, from minutes to hours
+
+Amazon S3 Glacier Deep Archive (S3 Glacier Deep Archive)
+==========================================================
+S3 Glacier Deep Archive is Amazon S3’s lowest-cost storage class and supports 
+long-term retention and digital preservation for data that may be accessed 
+once or twice in a year. It is designed for customers — particularly those 
+in highly-regulated industries, such as the Financial Services, Healthcare,
+ and Public Sectors — that retain data sets for 7-10 years or longer to meet 
+ regulatory compliance requirements. 
+ 
+ Key Features:
+ ================
+
+Designed for durability of 99.999999999% of objects across multiple Availability Zone
+Lowest cost storage class designed for long-term retention of data that will be retained for 7-10 years
+Ideal alternative to magnetic tape libraries
+Retrieval time within 12 hours.
+ https://aws.amazon.com/s3/storage-classes/
+ 
+ Buket Replication:
+ ===================
+ 
+ Amazon S3 Cross-Region Replication (CRR) 
+ Amazon S3 Same-Region Replication (SRR)
+ Amazon Replication Time Control
+----------------------------------------
+18/10/21 (16)
+
+What is S3 Glacier:-
+10 times cheaper compare with S3
+Single archive file will be 40TB
+Fast Glacier Tool  used for upload and download file
+LIfecycle Rule
+Glacier Retrival options
+Expedited Retrival 1-5min
+Standard Retrival 3-5 hrs
+Bulk Retrival 5-12 hrs
+
+lAB
+-------------------------------------
+19/10/21 (17) and 20/10/21 (18)
+What is Cloud VPC?
+Create VPC,Subnet Route table in public and Private and create NAT gateway
+
+NAT Gateway and NAT instance:
+
+NAT Gateway.
+Highly available.NAT gateways in each Availability Zone are implemented with redundancy.
+Create a NAT gateway in each Availability Zone to ensure zone-independent architecture. 
+Scale up to 45 Gbps.
+Managed by AWS. You do not need to perform any maintenance.
+Charged depending on the number of NAT gateways you use, duration of usage, and amount of data that you send through the NAT gateways. 
+Automatically selected from the subnet's IP address range when you create the gateway
+
+NAT instance.
+Use a script to manage failover between instances.
+Depends on the bandwidth of the instance type.
+Managed by you, for example, by installing software updates or operating system patches on the instance. 
+Assign a specific private IP address from the subnet's IP address range when you launch the instance. 
+Charged depending on the number of NAT instances that you use, duration of usage, and instance type and size. 
+---------------------------------------------------------------------------------
+21/10/21 (19)
+VPC Peering 
+A VPC peering connection is a networking connection between two VPCs
+that enables you to route traffic between them using private IP addresses.
+
+LAB
+-------------------------------------------------------------
+22/10/21 (20)
+
+What is DHCP Option set?(Important interview qs)
+It is one of rthe option inside AWS vpc
+while creating a instance you get a public domain name and which have been already created by AWS VPC
+If you want to use a organisation domain name yoou have to create a dhcp rule set with (DNS Servers,NTP Servers,NetBios Servers)
+
+WAF(Web Application Firewall)
+
+By default all the services are work under WAF if you need extra protection means we can use WAF
+*Prevent from DDOS attack
+
+
+Provide frontend service
+
+To prevent upto 80%attack we can use WAF 
+
+to prevent from 100%attack we can add use Sheild 
+ACL managed by Amazon
+
+Discuss about Blacklist IP and Whitelist IP
+
+Pricing depends on adding rules
+
+Web ACL
+IP Sets 
+Rule group
+-----------------------------------------------------------
+25/10/21 (21)
+Route 53
+What is DNS?
+DNS, or the Domain Name System, translates human readable domain names (for example, www.amazon.com) to machine readable IP addresses 
+LAB:Signin and purchase a domain in freenom
+-------------------------------------------------------------
+26/10/21 (22)
+show the rooot name servers organisation
+what is record set
+purchase a domain from route 53
+
+Lab1:Hosting website using freenom with Route 53
+----------------------------------------------------
+27/10/21.(23)
+IAM
+AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely.
+Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
+IAM is a feature of your AWS account offered at no additional charge.
+
+Azure role-based access control (Azure RBAC) helps you manage who has access to Azure resources, 
+what they can do with those resources, and what areas they have access to
+
+LAB1
+Create a IAM user in aws account
+user--adduser---program /console accesss/custom pass/---attach policy (admin access)----
+abilash@1230
+--------------------------------------------------------------------------------------
+28/10/21 (24)
+Cloud Watch/Cloud Alarm
+
+Each alert uses one Amazon CloudWatch alarm to monitor charges and one Amazon SNS(Simple Notification Service)topic to send the alert email charged at standard rates.
+You can use upto 10 alarms and 1,000 e-mail notifications free each month as part of the AWS Free Tier
+and most customers will be able to use billing alerts at no additional charge.
+
+LAB:
+Create Alarm for CPU Utilization?
+---------------------------------------------------------------------------------------------
+1/11/21 (25)
+What is cloud watch logs?
+
+CloudWatch Logs enables you to centralize the logs from all of your systems, applications, and AWS services that you use,
+in a single, highly scalable service. You can then easily view them, search them for specific error codes or patterns,
+filter them based on specific fields, or archive them securely for future analysis.
+
+You can use Amazon CloudWatch Logs to monitor, store, and access your log files
+from Amazon Elastic Compute Cloud (Amazon EC2)instances, AWS CloudTrail, Route 53, and other sources.
+
+LAB
+Apllication logs from Ec2 instances in Cloud watch?
+------------------------------------------------------------------------------------------------------
+2/11/21 (26)
+Cloud Metrics
+Cloud metrics provides insights into your cloud computing. 
+It allows predictive analysis of your system, 
+to determine when your servers are under load and requires provisioning
+
+LAB to analyse disk usage
+------------------------------------------------------------------------------------------------------
+5/11/21 (27)
+
+ACM
+AWS Certificate Manager is a service that lets you easily provision, manage, 
+and deploy public and private Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificates
+HTTP ----HTTPS
+Benefits
+Free public certificates for ACM-integrated services
+Managed certificate renewal
+Get certificates easily
+
+Use cases
+Protect and secure your website
+Protect and secure your internal resources
+Improved uptime
+Help meet compliance requirements
+
+5/11/21 (27)
+
+CloudFront(Content delivery Network)
+
+-------------------------------------------------------------------------------------------------------------
+8/11/21 (28)
+In AWS Elastic BeanStack
+In Azure App service
+
+AWS Elastic Beanstalk
+=====================
+
+AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web 
+applications and services developed with Java,
+.NET, PHP, Node.js, Python, Ruby, Go, and Docker on 
+familiar servers such as Apache, Nginx, Passenger, and IIS.
+
+You can simply upload your code and Elastic Beanstalk automatically 
+handles the deployment, from capacity provisioning,
+load balancing, auto-scaling to application health monitoring.
+At the same time, you retain full control over the AWS resources
+powering your application and can access the underlying resources at any time.
+
+
+cloudformation 
+json
+
+Benefits:
+==========
+
+Fast and simple to begin
+Developer productivity
+Complete resource control
+Monitoring
+Application Health
+Management and Updates
+Scaling
+Customization
+There is no additional charge for AWS Elastic Beanstalk.
+You pay for AWS resources (e.g. EC2 instances or S3 buckets)
+
+lAB:cREATE ebs and deploy web appps
