@@ -25,3 +25,126 @@ that enables you to route traffic between them using private IP addresses.
 
 LAB in VPC peering
 
+AWS RDS
+RDS stands for Relational Database Service platform to use Database services
+
+It allows you to create database in the cloud that are managed by AWS.
+Postgress/Mysql/MariaDB/Oracle/Microsoft SQL Server
+            
+1. Managed Service
+2. OS Patching level
+3. Continuous backups and restore to specific timestamp
+   (Point in time Restore)
+4. Monitoring Dashboards
+5. Read replicas for improved read performance
+6. Multi AZ setup for DR {Distaster Recovery}
+7. But you can't SSH into your instances.
+  
+RDS Read Replicas for read scalability --image
+=============================================
+1. Up to 5 Read Replicas 
+2. within AZ , Cross AZ or Cross Region.'
+3. Replication is ASYNC so reads are eventually consistent
+
+RDS Multi AZ (Disaster Recovery)
+================================
+
+1. SYNC replication
+2. One DNS name -Automatic app failover to standby
+3. Increase availability
+
+RDS Backups:
+===========
+1. Backups are automatically enabled in RDS.
+2. Automated backups:
+3. Daily full snapshot of the database
+4. capture transaction logs is real time.
+5. Ability to restore to any real time
+6. 7 days retention (can be increased to 35 days)
+7. DB snapsoht
+8. Manually triggered by the user
+9. Retention of backup for as long as you want.
+
+sqlectron download
+
+Lab:Create Database server and connect the db server 
+---------------------------------------------------------
+Cloud Formation
+================
+
+• Building AWS infrastructure as a code
+• Design a template
+• Create a Template from your Existing
+Resources
+
+AWS CloudFormation gives you an easy way to model a collection of related AWS and 
+third-party resources, provision them quickly and consistently, and manage them 
+throughout their lifecycles, by treating infrastructure as code. A CloudFormation 
+template describes your desired resources and their dependencies so you can launch 
+and configure them together as a stack. You can use a template to create, update, 
+and delete an entire stack as a single unit, as often as you need to, instead of managing
+resources individually. You can manage and provision stacks across multiple AWS accounts 
+and AWS Regions.
+
+Dynamo DB
+----------
+Managed NoSQL Database
+It is a non relational database---------- IT having no structure /No Sql database
+fully managed by Amazon auto updates,patches
+10 trillion 10 power 12 request it will handle
+fastest data transfer DB in world
+maintain/autoscale/backup all are handled by AWS
+AWS provide SLA for this service
+Single digit milli second latency
+Low cost and autoscale
+Distributed
+
+
+users using Dynamo DB Nike,Samsung,	GE aviation
+
+
+Pricing depends on RCU -Read Capacity Units
+not based on server/storage
+0.00013$ per RCU
+
+---------------------------------------------
+
+AWS Lambda
+Serverless Computing service
+Server Managed by AWS We no need to manage the server
+We just need to give the code Python,Ruby,Nodejs,PHP
+Its a kind of automation service
+For ex:-
+1.Alexa ---
+2.Start and Stop EC2 instance
+3.S3 if you upload png automatically it changes to jpeg to particular folder
+
+Cloud Formation LAB: 
+aws link and take template 
+Json/Yaml(Human readable)
+parameter---name and what types of instance we need
+Mapping -----instance types and value mapping 
+Resources----------What are the things we are creating in json (Must needed)
+Outputs-------------Created Json Output
+
+----------------------------------------------
+AWS CLI
+AWS Command Line Interface
+==========================	
+The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services. 
+With just one tool to download and configure, you can control multiple AWS services from the
+command line and automate them through scripts.
+	
+Create one IAM user with administrator previlage
+
+aws --version
+
+aws configure 
+AWS Access Key Id :
+AWS Secret Key ID : 
+Default region name : ap-south-1
+Default output format :
+
+aws s3 ls
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-instances.html
