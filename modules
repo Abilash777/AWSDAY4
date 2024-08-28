@@ -1,0 +1,7 @@
+modules
+
+---- Cloud Concepts (Service model ,deployment model,AWS architecture, pricing ,comparison of cloud service provider ,Services used in AWS )
+----Cloud Security (WAF and shield ,AWS Firewall Manager ,IAM)
+----Compute (EC2) ,Storage(S3) and network (VPC)
+----Build and deploy app in EBS
+---- Database services in cloud 
